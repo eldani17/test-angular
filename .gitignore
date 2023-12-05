@@ -1,0 +1,23 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+# Compiled output
+
+# Angular
+.angular
+dist/
+
+# Node
+/node_modules
+
+# Karman / Jasmine
+coverage/
+
+# Visual Studio Code
+.vscode/
+
+# AWS
+.serverless
+
+# Miscellaneous
+
+# System files
+.DS_Store
