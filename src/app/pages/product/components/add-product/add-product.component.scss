@@ -1,0 +1,63 @@
+@import "../../../../../scss/colors";
+
+:host {
+  .card {
+    background-color: $white;
+    margin: 80px auto;
+    max-width: 800px;
+    width: 100%;
+
+    &__h1 {
+      text-align: center;
+      padding: 30px;
+      margin-bottom: 0px;
+    }
+  }
+
+  .form {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-auto-flow: row;
+    grid-gap: 20px;
+    grid-template-rows: 60px 60px 60px;
+    grid-template-columns: 45% 45%;
+    padding-top: 40px;
+
+    &__field {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  .form__actions {
+    display: flex;
+    gap: 70px;
+    justify-content: center;
+    padding-top: 50px;
+    padding-bottom: 50px;
+
+    &--reset {
+      background-color: $whisper;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      padding: 15px;
+    }
+
+    &--send {
+      background-color: $energy-yellow;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      padding: 15px;
+    }
+  }
+}
+
+input[type="text"] {
+  padding: 10px;
+  border-radius: 5px;
+  margin: 10px 0px;
+  border: 2px solid #b9b9bb;
+}

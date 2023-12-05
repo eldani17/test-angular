@@ -1,0 +1,108 @@
+<div class="container" *ngIf="!isLoading; else loadingTemplate">
+  <section class="actions-table">
+    <div class="actions-table__container-sarch">
+      <input
+        class="actions-table__container-sarch--input"
+        type="text"
+        placeholder="Search..."
+        (keyup.enter)="handleSearchProducts($event)"
+        #searchInput
+      />
+      <button *ngIf="searchInput.value" (click)="handleSearchClear()">
+        Limpiar
+      </button>
+    </div>
+    <button class="actions-table__add" (click)="handleAddProduct()">
+      Agregar
+    </button>
+  </section>
+  <div class="background-table">
+    <table class="table">
+      <tr class="table__header">
+        <th class="table__header--logo">Logo</th>
+        <th class="table__header--name">Nombre del producto</th>
+        <th class="table__header--description">Descripción</th>
+        <th class="table__header--date_release">Fecha de liberación</th>
+        <th class="table__header--date_revision">Fecha de reestructuración</th>
+      </tr>
+      <tr class="table__body" *ngFor="let product of dataSetProducts">
+        <td class="table__body--logo">
+          <img
+            class="table__body--logo--img"
+            [src]="product.logo"
+            [alt]="'logo del product product.name'"
+          />
+        </td>
+        <td class="table__body--name">{{ product.name }}</td>
+        <td class="table__body--description">{{ product.description }}</td>
+        <td class="table__body--date_release">
+          {{ product.date_release | date : "dd/MM/yyy" }}
+        </td>
+        <td class="table__body--date_revision">
+          {{ product.date_revision | date : "dd/MM/yyy" }}
+        </td>
+      </tr>
+    </table>
+
+    <div class="t-footer">
+      <span>{{ products.length }} Resultados</span>
+
+      <div class="pagination">
+        <button
+          class="pagination__left"
+          [disabled]="pagination.current == 1"
+          (click)="handlePaginationDecrement()"
+        >
+          <<
+        </button>
+        <label class="pagination__label"
+          >{{ pagination.current }} de {{ pagination.total }}</label
+        >
+        <button
+          class="pagination__right"
+          [disabled]="pagination.current == pagination.total"
+          (click)="handlePaginationIncrement()"
+        >
+          >>
+        </button>
+        <select
+          class="t-footer__select"
+          name="quantity-per-page"
+          id="quantity-per-page"
+          #quantityPerPage
+          (change)="handleQuantityPerPage(quantityPerPage.value)"
+        >
+          <option
+            *ngFor="let item of quantityPerPageOptions"
+            [value]="item.value"
+            [selected]="item.selected"
+          >
+            {{ item.value }}
+          </option>
+        </select>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #loadingTemplate>
+  <div class="container">
+    <div class="container-skeleton">
+      <ngx-skeleton-loader
+        count="1"
+        appearance="line"
+        [theme]="{ height: '40px' }"
+      ></ngx-skeleton-loader>
+      <ngx-skeleton-loader
+        count="1"
+        appearance="line"
+        [theme]="{ height: '200px' }"
+      ></ngx-skeleton-loader>
+      <ngx-skeleton-loader
+        count="1"
+        appearance="line"
+        [theme]="{ height: '30px' }"
+      ></ngx-skeleton-loader>
+    </div>
+  </div>
+</ng-template>

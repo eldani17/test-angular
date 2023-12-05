@@ -1,0 +1,3 @@
+<ng-container *ngIf="errorsList.length > 0">
+  <span *ngFor="let error of errorsList">{{ validations[error] }}</span>
+</ng-container>

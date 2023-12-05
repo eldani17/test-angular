@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="card">
+    <h1 class="card__h1">Formulario de registro</h1>
+    <hr class="card__hr" />
+    <form class="form" [formGroup]="formProduct">
+      <div class="form__field">
+        <label for="id">ID:</label>
+        <input type="text" id="id" name="id" formControlName="id" />
+        <ng-container *ngIf="formProduct.get('id')?.errors">
+          <!-- <app-control-message-form
+            [errors]="formProduct.get('id')!.errors"
+          ></app-control-message-form> -->
+        </ng-container>
+      </div>
+      <div class="form__field">
+        <label for="name">Nombre:</label>
+        <input type="text" id="name" name="name" formControlName="name" />
+      </div>
+      <div class="form__field">
+        <label for="description">Descripción:</label>
+        <input
+          type="text"
+          id="description"
+          name="description"
+          formControlName="description"
+        />
+      </div>
+      <div class="form__field">
+        <label for="logo">Logo:</label>
+        <input type="text" id="logo" name="logo" formControlName="logo" />
+      </div>
+      <div class="form__field">
+        <label for="date_release">Fecha Liberación:</label>
+        <input
+          type="text"
+          id="date_release"
+          name="date_release"
+          formControlName="date_release"
+        />
+      </div>
+      <div class="form__field">
+        <label for="date_revision">Fecha Revisión:</label>
+        <input
+          type="text"
+          id="date_revision"
+          name="date_revision"
+          formControlName="date_revision"
+        />
+      </div>
+    </form>
+    <div class="form__actions">
+      <button class="form__actions--reset" (click)="handleResetForm()">
+        Reiniciar
+      </button>
+      <button
+        class="form__actions--send"
+        (click)="handleCreateProduct()"
+        [disabled]="formProduct.invalid"
+      >
+        Enviar
+      </button>
+    </div>
+  </div>
+</div>
